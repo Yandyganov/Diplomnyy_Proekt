@@ -1,0 +1,241 @@
+﻿<Window x:Class="Autosalon.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Autosalon"
+        mc:Ignorable="d"
+        Title="Автосалон" 
+        WindowStartupLocation="CenterScreen"
+        Height="600" Width="1300"
+        MinWidth="1300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        
+
+        <StackPanel 
+            Orientation="Vertical"
+            Width="200">
+
+            <Label Content="Автосалон" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Times New Roman"/>
+
+            <Image Width="200" VerticalAlignment="Top" Source="/picture.png"/>
+
+            <Button 
+                x:Name="AddButton"
+                Content="Добавить"
+                Click="AddButton_Click"
+                FontSize="30"
+                FontFamily="Times New Roman"
+                Background="#FFFFA74F"/>
+
+            
+        </StackPanel>
+            <Button  
+                x:Name="ExitButton" 
+                Content="Выход" 
+                Click="ExitButton_Click" 
+                VerticalAlignment="Bottom"
+                FontSize="30"
+                FontFamily="Times New Roman"
+                Background="#FFFFA74F"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <WrapPanel 
+                Orientation="Horizontal"
+                ItemHeight="50">
+
+                <Label 
+                    Content="Сортировка по цене"
+                    VerticalAlignment="Center"
+                    FontFamily="Times New Roman"
+                    Margin="0, 0, 5, 0"
+                    FontSize="20"/>
+
+                <RadioButton
+                    GroupName="Title"
+                    Tag="1"
+                    IsChecked="True"
+                    Content="По возрастанию"
+                    Checked="RadioButton_Checked"
+                    VerticalAlignment="Center"
+                    FontFamily="Times New Roman"
+                    Margin="0, 0, 5, 0"
+                    FontSize="20"/>
+                
+                <RadioButton
+                    GroupName="Title"
+                    Tag="2"
+                    Content="По убыванию"
+                    Checked="RadioButton_Checked"
+                    VerticalAlignment="Center"
+                    FontFamily="Times New Roman"
+                    Margin="0, 0, 5, 0"
+                    FontSize="20"/>
+
+                <Label 
+                    Content="Фильтр"
+                    VerticalAlignment="Center"
+                    FontFamily="Times New Roman"
+                    Margin="0, 0, 5, 0"
+                    FontSize="20"/>
+
+                <ComboBox
+                    x:Name="FilterComboBox"
+                    SelectedIndex="0"
+                    VerticalContentAlignment="Center"
+                    Height="30"
+                    Width="200"
+                    SelectionChanged="FilterComboBox_SelectionChanged"
+                    ItemsSource="{Binding ProductTypeList}"
+                    FontFamily="Times New Roman"
+                    Margin="0, 0, 5, 0"
+                    FontSize="20">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontSize="20" Text="{Binding Title}" FontFamily="Times New Roman"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+
+                <Label 
+                    Content="Поиск" 
+                    VerticalAlignment="Center" FontFamily="Times New Roman"
+                    Margin="0, 0, 5, 0"
+                    FontSize="20"/>
+                <TextBox
+                    Width="200"
+                    VerticalAlignment="Center"
+                    x:Name="SearchFilterTextBox" 
+                    KeyUp="SearchFilter_KeyUp"
+                    BorderThickness="2"
+                    FontFamily="Times New Roman"
+                    Margin="0, 0, 5, 0"
+                    FontSize="20"/>
+            </WrapPanel>
+
+            <ListView
+                Grid.Row="1"
+                ItemsSource="{Binding ProductList}"
+                x:Name="ProductListView"
+                MouseDoubleClick="ProductListView_MouseDoubleClick"
+                FontFamily="Times New Roman"
+                FontSize="20">
+
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem FontSize="20" Header="Удалить" FontFamily="Times New Roman" x:Name="DeleteButton" Click="DeleteButton_Click"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter
+                            Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border 
+                            BorderThickness="1" 
+                            BorderBrush="Black" 
+                            CornerRadius="10">
+                            <Grid 
+                                Margin="10"
+                                HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="64"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image
+                                    Width="64" 
+                                    Height="64"
+                                    Source="{Binding Path=ImagePreview}"/>
+
+                                <Grid Grid.Column="1" Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding ProductType.Title}" FontSize="20" FontFamily="Times New Roman"/>
+                                        <TextBlock Text=" | " FontSize="20" FontFamily="Times New Roman"/>
+                                        <TextBlock Text="{Binding Title}" FontSize="20" FontFamily="Times New Roman"/>
+                                    </StackPanel>
+
+                                    <TextBlock 
+                                        Text="{Binding ArticleNumber}"
+                                        Grid.Row="1"
+                                        FontFamily="Times New Roman"
+                                        FontSize="20"/>
+                                </Grid>
+
+                                <TextBlock 
+                                    Text="Цена:"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
+                                    Margin="10"
+                                    FontFamily="Times New Roman"
+                                    FontSize="20"/>
+
+                                <TextBlock 
+                                    Text="{Binding MinCostForAgent}"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    FontFamily="Times New Roman"
+                                    FontSize="20"/>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+            <StackPanel
+                Grid.Row="2"
+                HorizontalAlignment="Right" 
+                Orientation="Horizontal">
+                <Button 
+                    Content="Назад" 
+                    Name="PrevButton"
+                    Click="PrevButton_Click"
+                    FontSize="20"
+                    Background="#FFFFA74F"
+                    FontFamily="Times New Roman"/>
+                <TextBlock 
+                    Text="{Binding CurrentPage, StringFormat=Страница {0}}"
+                    VerticalAlignment="Center"
+                    Margin="5"
+                    FontSize="14"
+                    FontFamily="Times New Roman"/>
+                <Button
+                    Content="Вперёд"
+                    Name="NextButton"
+                    Click="NextButton_Click"
+                    FontSize="20"
+                    Background="#FFFFA74F"
+                    FontFamily="Times New Roman"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>

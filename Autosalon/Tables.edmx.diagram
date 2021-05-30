@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d4c526ded3e241b49ba4b001414175bb" Name="Diagram1" ZoomLevel="34">
+        <EntityTypeShape EntityType="vyandyganovModel.Agent" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vyandyganovModel.AgentPriorityHistory" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vyandyganovModel.AgentType" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="vyandyganovModel.Material" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="vyandyganovModel.MaterialCountHistory" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="vyandyganovModel.MaterialType" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="vyandyganovModel.Product" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="vyandyganovModel.ProductCostHistory" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vyandyganovModel.ProductMaterial" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vyandyganovModel.ProductSale" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="vyandyganovModel.ProductType" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="vyandyganovModel.Shop" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="vyandyganovModel.Supplier" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
+        <AssociationConnector Association="vyandyganovModel.FK_Agent_AgentType" ManuallyRouted="false" />
+        <AssociationConnector Association="vyandyganovModel.FK_AgentPriorityHistory_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="vyandyganovModel.FK_ProductSale_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="vyandyganovModel.FK_Shop_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="vyandyganovModel.FK_Material_MaterialType" ManuallyRouted="false" />
+        <AssociationConnector Association="vyandyganovModel.FK_MaterialCountHistory_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="vyandyganovModel.FK_ProductMaterial_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="vyandyganovModel.FK_Product_ProductType" ManuallyRouted="false" />
+        <AssociationConnector Association="vyandyganovModel.FK_ProductCostHistory_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="vyandyganovModel.FK_ProductMaterial_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="vyandyganovModel.FK_ProductSale_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="vyandyganovModel.MaterialSupplier" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
